@@ -13,7 +13,7 @@
 
 /* Layout: wide gallery grid on a warm stone ground, ink black for action, big compressed-italic-free Archivo caps for display. Single light world by choice. */
 :root{
-  --bg:#F2F1ED; --paper:#FFFFFF; --stone:#E4E2DC; --line:#D6D3CC;
+  --bg:#F2F1ED; --paper:#FFFFFF; --stone:#E4E2DC; --photo:#E9E7E2; --line:#D6D3CC;
   --ink:#121211; --muted:#5C5B55; --invert:#F2F1ED; --alert:#9A2B17; --ok:#2E5B37;
   --display:"Archivo", "Arial Narrow", Arial, sans-serif;
   --body:"Geist", "Helvetica Neue", Arial, sans-serif;
@@ -81,7 +81,7 @@ header.site .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:ce
 .tile:hover img{transform:scale(1.04)}
 .tile .cap{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
 .tile .cap b{font-family:var(--display);font-stretch:115%;font-weight:850;font-size:clamp(22px,2.4vw,32px);text-transform:uppercase;line-height:.95}
-.bg-paper{background:var(--paper)} .bg-stone{background:var(--stone)}
+.bg-paper{background:var(--paper)} .bg-stone{background:var(--stone)} .bg-photo{background:var(--photo)}
 .ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;margin-top:72px}
 .ticker div{display:inline-block;padding-block:16px;font-family:var(--display);font-stretch:125%;font-weight:850;font-size:22px;text-transform:uppercase;animation:tick 40s linear infinite}
 .ticker span{padding:0 28px}
@@ -122,7 +122,7 @@ section.block .wrap{padding-block:80px 0}
 .feature .ftext{padding:28px 20px;display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
 .feature h2{font-size:clamp(40px,5vw,76px)}
 .feature p{margin:0;color:#C9C7C0;max-width:40ch}
-.feature .fimg{background:var(--stone);aspect-ratio:4/5;max-width:100%;display:grid;place-items:center;overflow:hidden}
+.feature .fimg{background:var(--photo);aspect-ratio:4/5;max-width:100%;display:grid;place-items:center;overflow:hidden}
 .feature .fimg img{width:84%;height:84%;object-fit:contain;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .feature .fimg:hover img{transform:scale(1.05)}
 @media(max-width:860px){.feature{grid-template-columns:repeat(2,minmax(0,1fr))}.feature .ftext{grid-column:1/-1}}
@@ -333,10 +333,10 @@ footer.site .wrap{padding-block:64px 32px}
 <script>
 /* ===== Catalogus: prijzen zijn voorbeeldprijzen, pas hier aan ===== */
 const COLORS = {
-  grey:{name:'Heather Grey',hex:'#CFCCC5',bg:'bg-paper'},
-  choc:{name:'Chocolate',hex:'#3B2A22',bg:'bg-stone'},
-  white:{name:'Optic White',hex:'#FAFAF8',bg:'bg-stone'},
-  cream:{name:'Off White',hex:'#EFEBE1',bg:'bg-stone'}
+  grey:{name:'Heather Grey',hex:'#CFCCC5',bg:'bg-photo'},
+  choc:{name:'Chocolate',hex:'#3B2A22',bg:'bg-photo'},
+  white:{name:'Optic White',hex:'#FAFAF8',bg:'bg-photo'},
+  cream:{name:'Off White',hex:'#EFEBE1',bg:'bg-photo'}
 };
 const PRODUCTS = [
   {id:'essential-hoodie',name:'Essential Hoodie',cat:'heren',color:'grey',price:69,tag:'Nieuw',imgs:['img/essential-hoodie.webp','img/essential-jogger.webp'],
@@ -441,8 +441,8 @@ function viewHome(){
     </div>
   </div></section>
   <section><div class="wrap duo">
-    <a class="tile bg-paper" href="#heren"><img src="img/essential-hoodie.webp" alt="Essential Hoodie in Heather Grey"><span class="cap"><b>Heren<br>Essentials</b><span class="link">Shop</span></span></a>
-    <a class="tile bg-stone" href="#dames"><img src="img/track-jacket-front.webp" alt="Track Jacket in Chocolate"><span class="cap"><b>Dames<br>Track Set</b><span class="link">Shop</span></span></a>
+    <a class="tile bg-photo" href="#heren"><img src="img/essential-hoodie.webp" alt="Essential Hoodie in Heather Grey"><span class="cap"><b>Heren<br>Essentials</b><span class="link">Shop</span></span></a>
+    <a class="tile bg-photo" href="#dames"><img src="img/track-jacket-front.webp" alt="Track Jacket in Chocolate"><span class="cap"><b>Dames<br>Track Set</b><span class="link">Shop</span></span></a>
   </div></section>
   <div class="ticker" aria-hidden="true"><div>${Array(8).fill('<span>Tired</span><span>but focused</span>').join('')}</div></div>
   <section class="block"><div class="wrap">
