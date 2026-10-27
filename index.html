@@ -82,7 +82,7 @@ header.site > .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto minmax
 .tile .cap{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
 .tile .cap b{font-family:var(--display);font-stretch:115%;font-weight:850;font-size:clamp(22px,2.4vw,32px);text-transform:uppercase;line-height:.95}
 .bg-paper{background:var(--paper)} .bg-stone{background:var(--stone)} .bg-photo{background:var(--photo)}
-.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;margin-top:72px}
+.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;margin-top:72px;border-bottom:0}
 .ticker div{display:inline-block;padding-block:16px;font-family:var(--display);font-stretch:125%;font-weight:850;font-size:22px;text-transform:uppercase;animation:tick 40s linear infinite}
 .ticker span{padding:0 28px}
 .ticker span:nth-child(even){font-weight:300}
@@ -255,6 +255,60 @@ footer.site .wrap{padding-block:64px 32px}
 .fbig{display:block;width:100%;height:auto;margin-top:56px}
 .fbig text{font-family:var(--display);font-stretch:125%;font-weight:900;fill:#2A2A27}
 
+[hidden]{display:none!important}
+.was{text-decoration:line-through;color:var(--muted);margin-right:8px;font-weight:400}
+.badge.save{background:var(--ok)}
+.okline{color:var(--ok);font-size:14px;margin:10px 0 0}
+.stock{font-size:13px;color:var(--alert);margin:10px 0 0;font-weight:600}
+.upsell{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);font-size:14px}
+.adv{border:1px solid var(--line);background:var(--paper);margin-top:12px}
+.adv summary{min-height:48px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:600;font-size:14px;cursor:pointer;list-style:none}
+.adv summary::-webkit-details-marker{display:none}
+.adv summary::after{content:"+";font-family:var(--mono);font-size:18px}
+.adv[open] summary::after{content:"−"}
+.adv .in{padding:0 14px 16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.adv .fit{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px}
+.adv .fit label{display:flex;gap:8px;align-items:center;min-height:32px;cursor:pointer}
+.adv .fit input{accent-color:var(--ink)}
+.adv .full2{grid-column:1/-1}
+.res{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:var(--bg)}
+.res b{font-family:var(--display);font-stretch:115%;font-weight:850;font-size:26px;text-transform:uppercase}
+.smallbtn{height:40px;padding:0 16px;border:1px solid var(--ink);background:transparent;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.smallbtn.dark{background:var(--ink);color:var(--invert)}
+input[type=number]{height:44px;padding:0 12px;border:1px solid var(--line);background:var(--paper);font:inherit;font-size:15px;color:var(--ink);width:100%}
+.code{display:flex;gap:8px}
+.code input{flex:1;min-width:0;height:40px;padding:0 12px;border:1px solid var(--line);background:var(--paper);font:inherit;font-size:14px;text-transform:uppercase}
+.promo{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--ok)}
+.promo button{border:0;background:transparent;font-size:12px;color:var(--muted);text-decoration:underline}
+.pay label small{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.drop{background:var(--ink);color:var(--invert)}
+.drop .wrap{padding-block:44px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px}
+.drop h2{font-size:clamp(34px,5vw,60px)}
+.cd{display:flex;gap:8px}
+.cd div{min-width:68px;padding:12px 8px;border:1px solid #3A3A37;text-align:center}
+.cd b{display:block;font-family:var(--display);font-stretch:115%;font-weight:850;font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.cd span{font-family:var(--mono);font-size:11px;color:#B9B7B0;text-transform:uppercase}
+.drop form{display:flex;gap:8px;width:min(100%,420px)}
+.drop input{flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid #55544F;background:transparent;color:var(--invert);font:inherit}
+.drop input:focus{outline:2px solid var(--invert)}
+.drop button{height:48px;padding:0 18px;border:0;background:var(--invert);color:var(--ink);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.batt{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1px solid var(--line);border-radius:20px;background:var(--bg);font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.batt .cell{position:relative;width:26px;height:13px;border:2px solid var(--ink);border-radius:3px;padding:1px}
+.batt .cell::after{content:"";position:absolute;right:-5px;top:2px;width:3px;height:5px;background:var(--ink);border-radius:0 2px 2px 0}
+.batt .lvl{display:block;height:100%;background:var(--ink);transition:width .5s linear}
+.batt.low{border-color:#D9480F;color:#B23A0B}
+.batt.low .lvl{background:#D9480F}
+.batt.low .cell{animation:blink 1s steps(2) infinite}
+.batt.full .lvl{background:var(--ok)}
+@keyframes blink{50%{opacity:.35}}
+.egg{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(68px + env(safe-area-inset-bottom,0px));z-index:96;width:min(380px,calc(100% - 32px));background:var(--ink);color:var(--invert);padding:24px;opacity:0;transform:translateY(16px) scale(.98);pointer-events:none;transition:opacity .3s,transform .3s}
+.egg.on{opacity:1;transform:none;pointer-events:auto}
+.egg h3{font-family:var(--display);font-stretch:115%;font-weight:900;font-size:36px;line-height:.9;text-transform:uppercase;margin:6px 0 12px}
+.egg p{margin:0 0 16px;color:#C9C7C0;font-size:15px}
+.egg .codebig{display:inline-block;font-family:var(--mono);font-size:22px;letter-spacing:.2em;border:1px dashed #7A7872;padding:8px 14px;margin-bottom:16px;user-select:all}
+.egg .row{display:flex;flex-wrap:wrap;gap:8px}
+.egg .smallbtn{border-color:var(--invert);color:var(--invert)}
+.egg .smallbtn.dark{background:var(--invert);color:var(--ink)}
 .view{animation:fade .35s ease}
 @keyframes fade{from{opacity:.4;transform:translateY(6px)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -332,6 +386,15 @@ footer.site .wrap{padding-block:64px 32px}
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<button class="batt" id="battBtn" type="button" aria-label="Batterij 100 procent"><span class="cell"><span class="lvl" id="battLvl" style="width:100%"></span></span><span id="battTxt">100%</span></button>
+<div class="egg" id="egg" role="dialog" aria-labelledby="eggTitle" inert>
+  <p class="label" style="margin:0;color:#B9B7B0">Batterij 8%</p>
+  <h3 id="eggTitle">Tired?<br>But focused.</h3>
+  <p>Je bent hier nog steeds. Dat is precies waar TBF voor staat. Als beloning:</p>
+  <div class="codebig">FOCUSED</div>
+  <p style="margin-top:-6px">10% korting op je hele bestelling.</p>
+  <div class="row"><button class="smallbtn dark" type="button" data-egg-apply>Code toepassen</button><button class="smallbtn" type="button" data-egg-close>Ik ga door</button></div>
+</div>
 
 <script>
 /* ===== Catalogus: prijzen zijn voorbeeldprijzen, pas hier aan ===== */
@@ -343,24 +406,35 @@ const COLORS = {
 };
 const PRODUCTS = [
   {id:'essential-hoodie',name:'Essential Hoodie',cat:'heren',color:'grey',price:69,tag:'Nieuw',imgs:['img/essential-hoodie.webp','img/essential-jogger.webp'],
-   desc:'Zware fleece hoodie met oversized fit, verlaagde schouder en kangoeroezak. TBF-logo op de borst.',soldout:[]},
+   desc:'Zware fleece hoodie met oversized fit, verlaagde schouder en kangoeroezak. TBF-logo op de borst.'},
   {id:'essential-jogger',name:'Essential Jogger',cat:'heren',color:'grey',price:59,tag:'Nieuw',imgs:['img/essential-jogger.webp','img/essential-hoodie.webp'],
-   desc:'Relaxte jogger met elastische taille, steekzakken en een rechte pijp. Logo op het bovenbeen.',soldout:['XS']},
+   desc:'Relaxte jogger met elastische taille, steekzakken en een rechte pijp. Logo op het bovenbeen.'},
   {id:'track-jacket',name:'Track Jacket',cat:'dames',color:'choc',price:79,tag:'Dames',imgs:['img/track-jacket-front.webp','img/track-jacket-back.webp','img/track-jacket-side.webp','img/track-detail-logo.jpg','img/track-detail-stripe.jpg'],
-   desc:'Track jacket in gladde poly-blend met crème bies over de mouwen en hoge kraag. Geborduurd script-logo.',soldout:[]},
+   desc:'Track jacket in gladde poly-blend met crème bies over de mouwen en hoge kraag. Geborduurd script-logo.'},
   {id:'track-pant',name:'Track Pant',cat:'dames',color:'choc',price:65,tag:'Dames',imgs:['img/track-pant-front.webp','img/track-pant-back.webp','img/track-pant-side.webp','img/track-detail-fabric.jpg'],
-   desc:'Wijde track pant met bies langs het been en elastische taille. Hoort bij de Track Jacket.',soldout:['XXL']},
+   desc:'Wijde track pant met bies langs het been en elastische taille. Hoort bij de Track Jacket.'},
   {id:'patience-longsleeve',name:'Patience Longsleeve',cat:'longsleeves',color:'white',price:45,tag:'Graphic',imgs:['img/patience-ls-back.webp','img/patience-ls-front.webp'],
-   desc:'Longsleeve met zandloper-print en PATIENCE op de rug, klein TBF-logo op de borst. Boxy fit.',soldout:[]},
+   desc:'Longsleeve met zandloper-print en PATIENCE op de rug, klein TBF-logo op de borst. Boxy fit.'},
   {id:'now-longsleeve',name:'N:OW Longsleeve',cat:'longsleeves',color:'cream',price:45,tag:'Graphic',imgs:['img/now-ls-back.webp','img/now-ls-front.webp'],
-   desc:'Off-white longsleeve met grote N:OW-print op de rug en TBF-logo in petrol op de borst. Boxy fit.',soldout:[]},
+   desc:'Off-white longsleeve met grote N:OW-print op de rug en TBF-logo in petrol op de borst. Boxy fit.'},
   {id:'essential-set',name:'Essential Set',cat:'sets',color:'grey',price:119,tag:'Set',imgs:['img/essential-hoodie.webp','img/essential-jogger.webp'],
-   desc:'Hoodie en jogger samen, in dezelfde Heather Grey. Voordeliger dan los.',soldout:[]},
+   desc:'Hoodie en jogger samen, in dezelfde Heather Grey. Voordeliger dan los.'},
   {id:'track-set',name:'Track Set',cat:'sets',color:'choc',price:135,tag:'Set',imgs:['img/track-jacket-front.webp','img/track-pant-front.webp','img/track-jacket-back.webp','img/track-pant-back.webp','img/track-detail-logo.jpg'],
-   desc:'Track Jacket en Track Pant samen in Chocolate. De complete look.',soldout:[]}
+   desc:'Track Jacket en Track Pant samen in Chocolate. De complete look.'}
 ];
+/* Sets: welke losse stukken zitten erin (voor de korting) */
+const SET_PARTS = {'essential-set':['essential-hoodie','essential-jogger'],'track-set':['track-jacket','track-pant']};
+/* Voorraad per maat: niet vermeld = 10 stuks. Pas aan naar echte voorraad. */
+const STOCK = {'essential-hoodie':{M:3},'essential-jogger':{XS:0,L:2},'track-jacket':{S:2},'track-pant':{XXL:0},'patience-longsleeve':{L:1},'essential-set':{M:4}};
+const PROMO = {code:'FOCUSED', pct:10};
+const DROP = {name:'Drop 02', date:'2026-11-21T20:00:00+01:00'};
+const PICKUP = 'Sint-Niklaas';
 const CAT_NAMES = {alle:'Shop alles',heren:'Heren',dames:'Dames',longsleeves:'Longsleeves',sets:'Sets'};
 const SIZES = ['XS','S','M','L','XL','XXL'];
+function stockOf(p,s){ const v = STOCK[p.id] && STOCK[p.id][s]; return v===undefined ? 10 : v }
+function compareAt(p){ const parts = SET_PARTS[p.id]; return parts ? parts.reduce((t,id)=>t+PRODUCTS.find(x=>x.id===id).price,0) : 0 }
+function setFor(p){ const id = Object.keys(SET_PARTS).find(k=>SET_PARTS[k].includes(p.id)); return id ? PRODUCTS.find(x=>x.id===id) : null }
+const eur0 = n => '€ ' + (Math.round(n*100)%100 ? n.toFixed(2).replace('.',',') : String(Math.round(n)));
 const FREE_SHIP = 100, SHIP_COST = 4.95;
 
 const $ = s => document.querySelector(s);
@@ -374,6 +448,10 @@ try { cart = JSON.parse(localStorage.getItem('tbf-cart') || '[]') } catch(e) { c
 if(!Array.isArray(cart)) cart = [];
 cart = cart.filter(l => l && byId(l.id) && SIZES.includes(l.size) && l.qty > 0);
 let searchQ = '';
+let promo = '', deliv = 'home';
+try { promo = localStorage.getItem('tbf-code')==='FOCUSED' ? 'FOCUSED' : ''; deliv = localStorage.getItem('tbf-deliv')==='pickup' ? 'pickup' : 'home' } catch(e) {}
+const savePrefs = () => { try { localStorage.setItem('tbf-code', promo); localStorage.setItem('tbf-deliv', deliv) } catch(e) {} };
+const fitProfile = {h:'', w:'', fit:'normaal', res:null};
 const saveCart = () => { try { localStorage.setItem('tbf-cart', JSON.stringify(cart)) } catch(e) {} };
 let shopFilter = 'alle', shopSort = 'aanbevolen';
 const pdpState = {};
@@ -382,23 +460,53 @@ function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on
 
 /* ===== cart ===== */
 function addToCart(id,size,qty=1){
+  const p = byId(id), max = stockOf(p,size);
   const line = cart.find(l => l.id===id && l.size===size);
+  const have = line ? line.qty : 0;
+  if(have + qty > max){ toast(max===0 ? 'Maat '+size+' is uitverkocht' : 'Er zijn er maar '+max+' in maat '+size); return false }
   if(line) line.qty += qty; else cart.push({id,size,qty});
   saveCart(); renderCart();
   const c=$('#count'); c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump');
+  return true;
 }
 function cartTotals(){
   const sub = cart.reduce((s,l)=>s+byId(l.id).price*l.qty,0);
-  const ship = sub===0||sub>=FREE_SHIP ? 0 : SHIP_COST;
-  return {sub,ship,total:sub+ship,n:cart.reduce((s,l)=>s+l.qty,0)};
+  const disc = promo ? Math.round(sub*PROMO.pct)/100 : 0;
+  const after = sub - disc;
+  const ship = deliv==='pickup' || after===0 || after>=FREE_SHIP ? 0 : SHIP_COST;
+  return {sub,disc,after,ship,total:after+ship,n:cart.reduce((s,l)=>s+l.qty,0)};
+}
+function sumLines(t){
+  return `<div class="sum"><span>Subtotaal</span><span class="price">${eur(t.sub)}</span></div>
+    ${t.disc?`<div class="sum" style="color:var(--ok)"><span>Code ${PROMO.code} (−${PROMO.pct}%)</span><span class="price">−${eur(t.disc)}</span></div>`:''}
+    <div class="sum"><span>${deliv==='pickup'?'Ophalen in '+PICKUP:'Verzending'}</span><span class="price">${t.ship? eur(t.ship):'Gratis'}</span></div>
+    <div class="sum total"><span>Totaal</span><span class="price">${eur(t.total)}</span></div>`;
+}
+function codeBox(){
+  return promo
+    ? `<div class="promo"><span>Code <b>${PROMO.code}</b> actief, ${PROMO.pct}% korting</span><button type="button" data-rmcode>Verwijder</button></div>`
+    : `<form class="code codef"><input name="code" aria-label="Kortingscode" placeholder="Kortingscode" autocomplete="off"><button class="smallbtn" type="submit">Toepassen</button></form>`;
+}
+function applyCode(v){
+  if(String(v).trim().toUpperCase()===PROMO.code){ promo=PROMO.code; savePrefs(); renderCart(); refreshCheckout(); toast('Code '+PROMO.code+' toegepast: '+PROMO.pct+'% korting'); return true }
+  toast(String(v).trim() ? 'Deze code kennen we niet' : 'Vul een kortingscode in'); return false;
+}
+function refreshCheckout(){
+  const box = $('#coSum'); if(!box) return;
+  const t = cartTotals();
+  box.innerHTML = sumLines(t);
+  $('#coCode').innerHTML = codeBox();
+  $('#coTotal').textContent = eur(t.total);
 }
 function renderCart(){
   const t = cartTotals();
   $('#count').textContent = t.n;
   $('#cartBtn').setAttribute('aria-label','Winkelmand openen, '+t.n+' items');
-  const left = Math.max(0, FREE_SHIP - t.sub);
-  $('#ship').innerHTML = (left>0 ? 'Nog <b class="price">'+eur(left)+'</b> tot gratis verzending' : '<b>Je hebt gratis verzending</b>') +
-    '<div class="bar"><i style="width:'+Math.min(100,t.sub/FREE_SHIP*100)+'%"></i></div>';
+  const left = Math.max(0, FREE_SHIP - t.after);
+  $('#ship').innerHTML = deliv==='pickup'
+    ? '<b>Gratis ophalen in '+PICKUP+'</b> gekozen<div class="bar"><i style="width:100%"></i></div>'
+    : (left>0 ? 'Nog <b class="price">'+eur(left)+'</b> tot gratis verzending, of haal gratis op in '+PICKUP : '<b>Je hebt gratis verzending</b>') +
+      '<div class="bar"><i style="width:'+Math.min(100,t.after/FREE_SHIP*100)+'%"></i></div>';
   if(!cart.length){
     $('#items').innerHTML = '<div class="empty"><p>Je winkelmand is nog leeg.</p><a class="btn ghost" href="#shop" data-close-cart>Shop de collectie</a></div>';
     $('#dfoot').innerHTML = '';
@@ -411,10 +519,12 @@ function renderCart(){
         <div class="qty"><button data-q="${i}" data-d="-1" aria-label="Eén minder">−</button><span>${l.qty}</span><button data-q="${i}" data-d="1" aria-label="Eén meer">+</button></div></div>
       <div style="text-align:right"><div class="price">${eur(p.price*l.qty)}</div><button class="rm" data-rm="${i}">Verwijder</button></div>
     </div>`}).join('');
+  const sets = cart.map(l=>setFor(byId(l.id))).filter(Boolean);
+  const tip = sets.length && !cart.some(l=>SET_PARTS[l.id]) ? sets[0] : null;
   $('#dfoot').innerHTML = `
-    <div class="sum"><span>Subtotaal</span><span class="price">${eur(t.sub)}</span></div>
-    <div class="sum"><span>Verzending</span><span class="price">${t.ship? eur(t.ship):'Gratis'}</span></div>
-    <div class="sum total"><span>Totaal</span><span class="price">${eur(t.total)}</span></div>
+    ${tip?`<div class="upsell" style="margin:0"><span>Als set bespaar je <b>${eur0(compareAt(tip)-tip.price)}</b></span><a class="link" href="#p-${tip.id}" data-close-cart>Bekijk ${esc(tip.name)}</a></div>`:''}
+    ${codeBox()}
+    ${sumLines(t)}
     <a class="btn full" href="#checkout" data-close-cart>Afrekenen</a>`;
 }
 let lastFocus = null;
@@ -423,6 +533,15 @@ function closeCart(){ const d=$('#drawer'); if(!d.classList.contains('on')) retu
 function openModal(){ const m=$('#sizeModal'); m.inert=false; m.classList.add('on'); $('#scrim').classList.add('on'); m.querySelector('[data-close-modal]').focus() }
 function closeModal(){ const m=$('#sizeModal'); if(!m.classList.contains('on')) return; m.classList.remove('on'); m.inert=true; if(!$('#drawer').classList.contains('on')){ $('#scrim').classList.remove('on'); document.body.style.overflow='' } }
 
+/* Maatadvies: indicatie op basis van lengte en gewicht, oversized pasvorm */
+function adviseSize(h,w,fit){
+  const byH = h<165?0:h<172?1:h<179?2:h<186?3:h<193?4:5;
+  const byW = w<58?0:w<68?1:w<79?2:w<90?3:w<102?4:5;
+  let i = Math.round((byH+byW)/2 + 0.01);
+  if(fit==='strak') i -= 1;
+  return SIZES[Math.max(0,Math.min(5,i))];
+}
+
 /* ===== bouwstenen ===== */
 function card(p){
   const c = COLORS[p.color];
@@ -430,12 +549,12 @@ function card(p){
   return `<div class="card">
     <div class="phwrap">
     <a href="#p-${p.id}" class="ph ${c.bg}" aria-label="${esc(p.name)}, ${c.name}">
-      <span class="badge">${p.tag}</span>
+      <span class="badge${compareAt(p)?' save':''}">${compareAt(p)?'Bespaar '+eur0(compareAt(p)-p.price):p.tag}</span>
       <img class="main" src="${p.imgs[0]}" alt="${esc(p.name)} in ${c.name}" loading="lazy">${alt}
     </a>
-    <div class="quick" role="group" aria-label="Snel toevoegen, ${esc(p.name)}">${['S','M','L','XL'].map(s=>`<button data-quick="${p.id}" data-size="${s}" ${p.soldout.includes(s)?'disabled':''}>${s}</button>`).join('')}</div>
+    <div class="quick" role="group" aria-label="Snel toevoegen, ${esc(p.name)}">${['S','M','L','XL'].map(s=>`<button data-quick="${p.id}" data-size="${s}" ${stockOf(p,s)===0?'disabled':''}>${s}</button>`).join('')}</div>
     </div>
-    <a href="#p-${p.id}" class="meta"><div><div class="n">${esc(p.name)}</div><div class="c"><span class="dot" style="background:${c.hex}"></span>${c.name}</div></div><div class="price">${eur(p.price)}</div></a>
+    <a href="#p-${p.id}" class="meta"><div><div class="n">${esc(p.name)}</div><div class="c"><span class="dot" style="background:${c.hex}"></span>${c.name}</div></div><div class="price">${compareAt(p)?`<span class="was">${eur(compareAt(p))}</span>`:''}${eur(p.price)}</div></a>
   </div>`;
 }
 
@@ -454,6 +573,16 @@ function viewHome(){
     <a class="tile bg-photo" href="#dames"><img src="img/track-jacket-front.webp" alt="Track Jacket in Chocolate"><span class="cap"><b>Dames<br>Track Set</b><span class="link">Shop</span></span></a>
   </div></section>
   <div class="ticker" aria-hidden="true"><div>${Array(8).fill('<span>Tired</span><span>but focused</span>').join('')}</div></div>
+  <section class="drop"><div class="wrap">
+    <div>
+      <p class="label" style="margin:0 0 10px;color:#B9B7B0" id="dropLabel">Volgende drop</p>
+      <h2 class="display">${DROP.name}</h2>
+    </div>
+    <div class="cd" aria-live="off" aria-label="Aftelklok tot ${DROP.name}">
+      <div><b id="cd-d">00</b><span>dagen</span></div><div><b id="cd-h">00</b><span>uur</span></div><div><b id="cd-m">00</b><span>min</span></div><div><b id="cd-s">00</b><span>sec</span></div>
+    </div>
+    <form id="dropForm" novalidate><label class="sr" for="dropMail">E-mailadres voor de wachtlijst</label><input id="dropMail" type="email" placeholder="Zet me op de lijst"><button type="submit">Ik doe mee</button></form>
+  </div></section>
   <section class="block"><div class="wrap">
     <div class="sechead"><h2 class="display">Nieuw binnen</h2><a class="link" href="#shop">Alles bekijken</a></div>
     <div class="grid">${['patience-longsleeve','now-longsleeve','essential-hoodie','track-jacket'].map(id=>card(byId(id))).join('')}</div>
@@ -533,7 +662,9 @@ function viewProduct(id){
         <div>
           <p class="label" style="margin:0">${p.tag} · Collectie 01</p>
           <h1 class="display">${esc(p.name)}</h1>
-          <div class="bigprice price">${eur(p.price)}</div>
+          <div class="bigprice price">${compareAt(p)?`<span class="was">${eur(compareAt(p))}</span>`:''}${eur(p.price)}</div>
+          ${compareAt(p)?`<p class="okline">Los kost dit ${eur(compareAt(p))}. Met de set bespaar je <b>${eur0(compareAt(p)-p.price)}</b>.</p>`:''}
+          ${setFor(p)?`<div class="upsell"><span>Maak er een set van en bespaar <b>${eur0(compareAt(setFor(p))-setFor(p).price)}</b></span><a class="link" href="#p-${setFor(p).id}">Bekijk ${esc(setFor(p).name)}</a></div>`:''}
         </div>
         <div>
           <div class="row-h"><span><b>Kleur:</b> ${c.name}</span></div>
@@ -544,8 +675,22 @@ function viewProduct(id){
         </div>
         <div>
           <div class="row-h"><b>Maat${st.size?': '+st.size:''}</b><a href="#" class="link" style="text-transform:none;letter-spacing:0" data-size-guide>Maattabel</a></div>
-          <div class="sizes">${SIZES.map(s=>{const so=p.soldout.includes(s);return `<button class="size" data-size-pick="${s}" aria-pressed="${s===st.size}" ${so?'disabled aria-label="'+s+', uitverkocht"':''}>${s}</button>`}).join('')}</div>
-          <p class="note">Oversized fit. Twijfel je? Neem je normale maat.</p>
+          <div class="sizes">${SIZES.map(s=>{const so=stockOf(p,s)===0;return `<button class="size" data-size-pick="${s}" aria-pressed="${s===st.size}" ${so?'disabled aria-label="'+s+', uitverkocht"':''}>${s}</button>`}).join('')}</div>
+          ${st.size && stockOf(p,st.size)>0 && stockOf(p,st.size)<=3 ? `<p class="stock">Nog ${stockOf(p,st.size)} in maat ${st.size}, op is op</p>`:''}
+          <p class="note">Oversized fit. Het model is [lengte] cm en draagt maat M.</p>
+          <details class="adv" ${st.advOpen?'open':''}>
+            <summary>Welke maat past mij?</summary>
+            <div class="in">
+              <div class="f"><label for="adv-h">Lengte (cm)</label><input id="adv-h" type="number" inputmode="numeric" min="140" max="215" placeholder="180" value="${fitProfile.h}"></div>
+              <div class="f"><label for="adv-w">Gewicht (kg)</label><input id="adv-w" type="number" inputmode="numeric" min="40" max="160" placeholder="75" value="${fitProfile.w}"></div>
+              <div class="fit" role="radiogroup" aria-label="Hoe draag je het graag?">
+                <label><input type="radio" name="advfit" value="normaal" ${fitProfile.fit==='normaal'?'checked':''}> Oversized, zoals bedoeld</label>
+                <label><input type="radio" name="advfit" value="strak" ${fitProfile.fit==='strak'?'checked':''}> Iets strakker</label>
+              </div>
+              <button class="smallbtn dark full2" type="button" id="advBtn">Bereken mijn maat</button>
+              ${fitProfile.res?`<div class="res" role="status"><span>Wij raden aan: <b>${fitProfile.res}</b></span>${stockOf(p,fitProfile.res)>0?`<button class="smallbtn" type="button" data-size-pick="${fitProfile.res}">Kies ${fitProfile.res}</button>`:`<span class="stock" style="margin:0">Uitverkocht in ${fitProfile.res}</span>`}</div>`:''}
+            </div>
+          </details>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px">
           <button class="btn full" id="addBtn">In winkelmand · <span class="price">${eur(p.price)}</span></button>
@@ -576,10 +721,16 @@ function viewCheckout(){
       <form id="coForm" novalidate>
         <fieldset><legend>Contact</legend>
           <div class="f span2"><label for="c-mail">E-mailadres</label><input id="c-mail" type="email" required autocomplete="email" placeholder="jouw@email.be"></div>
-        </fieldset>
-        <fieldset><legend>Bezorging</legend>
           <div class="f"><label for="c-fn">Voornaam</label><input id="c-fn" type="text" required autocomplete="given-name"></div>
           <div class="f"><label for="c-ln">Achternaam</label><input id="c-ln" type="text" required autocomplete="family-name"></div>
+        </fieldset>
+        <fieldset><legend>Levering</legend>
+          <div class="pay">
+            <label><input type="radio" name="deliv" value="home" ${deliv==='home'?'checked':''}><span style="flex:1">Thuislevering<small>België en Nederland, gratis vanaf € 100</small></span><span class="price">${t.after>=FREE_SHIP?'Gratis':eur(SHIP_COST)}</span></label>
+            <label><input type="radio" name="deliv" value="pickup" ${deliv==='pickup'?'checked':''}><span style="flex:1">Ophalen in ${PICKUP}<small>Je krijgt een bericht zodra je bestelling klaarligt</small></span><span class="price">Gratis</span></label>
+          </div>
+        </fieldset>
+        <fieldset id="addr" ${deliv==='pickup'?'hidden':''}><legend>Adres</legend>
           <div class="f span2"><label for="c-st">Straat en huisnummer</label><input id="c-st" type="text" required autocomplete="street-address"></div>
           <div class="f"><label for="c-pc">Postcode</label><input id="c-pc" type="text" required autocomplete="postal-code"></div>
           <div class="f"><label for="c-ci">Gemeente</label><input id="c-ci" type="text" required autocomplete="address-level2"></div>
@@ -593,17 +744,14 @@ function viewCheckout(){
           </div>
         </fieldset>
         <p class="err" id="coErr" hidden role="alert">Vul de verplichte velden in.</p>
-        <button class="btn full" type="submit">Bestelling plaatsen · <span class="price">${eur(t.total)}</span></button>
+        <button class="btn full" type="submit">Bestelling plaatsen · <span class="price" id="coTotal">${eur(t.total)}</span></button>
         <p class="note" style="margin:0">Dit is een prototype. Er wordt niets betaald of verstuurd.</p>
       </form>
       <aside>
         <h2 class="display" style="font-size:24px;margin-bottom:6px">Je bestelling</h2>
         ${cart.map(l=>{const p=byId(l.id);return `<div class="mini"><div class="th ${COLORS[p.color].bg}"><img src="${p.imgs[0]}" alt=""></div><div class="grow"><b style="font-weight:600">${esc(p.name)}</b><div class="note" style="margin:0">${COLORS[p.color].name} · ${l.size} · ${l.qty}x</div></div><span class="price">${eur(p.price*l.qty)}</span></div>`}).join('')}
-        <div style="border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px">
-          <div class="sum"><span>Subtotaal</span><span class="price">${eur(t.sub)}</span></div>
-          <div class="sum"><span>Verzending</span><span class="price">${t.ship?eur(t.ship):'Gratis'}</span></div>
-          <div class="sum total"><span>Totaal</span><span class="price">${eur(t.total)}</span></div>
-        </div>
+        <div id="coCode" style="border-top:1px solid var(--line);padding-top:12px">${codeBox()}</div>
+        <div id="coSum" style="display:flex;flex-direction:column;gap:8px">${sumLines(t)}</div>
       </aside>
     </div>
   </div></section>`;
@@ -615,7 +763,7 @@ function viewThanks(){
   return `<section class="done"><div class="wrap">
     <p class="label">Bestelling ${lastOrder.nr}</p>
     <h1 class="display">Bedankt, ${esc(lastOrder.name)}.</h1>
-    <p style="font-size:17px;color:var(--muted);max-width:52ch">We hebben je bestelling van <b class="price" style="color:var(--ink)">${eur(lastOrder.total)}</b> ontvangen, betaald met ${lastOrder.pay}. Je krijgt een bevestiging op ${esc(lastOrder.mail)} zodra de echte shop live is.</p>
+    <p style="font-size:17px;color:var(--muted);max-width:52ch">We hebben je bestelling van <b class="price" style="color:var(--ink)">${eur(lastOrder.total)}</b> ontvangen, betaald met ${lastOrder.pay}. ${lastOrder.deliv==='pickup'?'Je kan ze gratis ophalen in '+PICKUP+', we sturen je een bericht zodra alles klaarligt.':'We versturen je pakket in onze eigen TBF-verzendzak.'} Je krijgt een bevestiging op ${esc(lastOrder.mail)} zodra de echte shop live is.</p>
     <p style="margin-top:32px"><a class="btn" href="#shop">Verder shoppen</a></p>
   </div></section>`;
 }
@@ -673,6 +821,7 @@ function route(){
   $('#mobileNav').hidden = true; $('#menuBtn').setAttribute('aria-expanded','false');
   window.scrollTo(0,0);
   if(key==='zoeken') $('#q').focus();
+  if(typeof tickDrop==='function') tickDrop();
 }
 function rerenderPdp(){ const y=window.scrollY; const h=location.hash.slice(1); app.innerHTML='<div>'+viewProduct(h.slice(2))+'</div>'; window.scrollTo(0,y) }
 window.addEventListener('hashchange', route);
@@ -683,23 +832,34 @@ document.addEventListener('click', e => {
   if(t.matches('[data-close-cart]')) closeCart();
   if(t.matches('[data-size-guide]')){ e.preventDefault(); openModal(); return }
   if(t.matches('[data-close-modal]')){ closeModal(); return }
-  if(t.dataset.quick){ addToCart(t.dataset.quick, t.dataset.size); toast(byId(t.dataset.quick).name+' maat '+t.dataset.size+' toegevoegd'); return }
+  if(t.dataset.quick){ if(addToCart(t.dataset.quick, t.dataset.size)) toast(byId(t.dataset.quick).name+' maat '+t.dataset.size+' toegevoegd'); return }
   if(t.dataset.img!==undefined){ pdpState[location.hash.slice(3)].img = +t.dataset.img; rerenderPdp(); return }
   if(t.dataset.sizePick){ const s=pdpState[location.hash.slice(3)]; s.size=t.dataset.sizePick; s.err=false; rerenderPdp(); return }
-  if(t.id==='addBtn'){ const id=location.hash.slice(3), s=pdpState[id]; if(!s.size){ s.err=true; rerenderPdp(); return } addToCart(id,s.size); openCart(); return }
-  if(t.dataset.q){ const l=cart[+t.dataset.q]; l.qty+=+t.dataset.d; if(l.qty<1) cart.splice(+t.dataset.q,1); saveCart(); renderCart(); return }
-  if(t.dataset.rm){ cart.splice(+t.dataset.rm,1); saveCart(); renderCart(); return }
+  if(t.id==='addBtn'){ const id=location.hash.slice(3), s=pdpState[id]; if(!s.size){ s.err=true; rerenderPdp(); return } if(addToCart(id,s.size)) openCart(); return }
+  if(t.id==='advBtn'){ const h=+$('#adv-h').value, w=+$('#adv-w').value; fitProfile.h=$('#adv-h').value; fitProfile.w=$('#adv-w').value; fitProfile.fit=(document.querySelector('input[name=advfit]:checked')||{}).value||'normaal';
+    if(!(h>=140&&h<=215&&w>=40&&w<=160)){ toast('Vul je lengte (140 tot 215 cm) en gewicht (40 tot 160 kg) in'); return }
+    fitProfile.res = adviseSize(h,w,fitProfile.fit); pdpState[location.hash.slice(3)].advOpen=true; rerenderPdp(); return }
+  if(t.matches('[data-rmcode]')){ promo=''; savePrefs(); renderCart(); refreshCheckout(); toast('Kortingscode verwijderd'); return }
+  if(t.id==='battBtn'){ battClick(); return }
+  if(t.matches('[data-egg-apply]')){ applyCode(PROMO.code); closeEgg(); return }
+  if(t.matches('[data-egg-close]')){ closeEgg(); return }
+  if(t.dataset.q){ const l=cart[+t.dataset.q], d=+t.dataset.d; if(d>0 && l.qty>=stockOf(byId(l.id),l.size)){ toast('Er zijn er maar '+stockOf(byId(l.id),l.size)+' in maat '+l.size); return } l.qty+=d; if(l.qty<1) cart.splice(+t.dataset.q,1); saveCart(); renderCart(); refreshCheckout(); return }
+  if(t.dataset.rm){ cart.splice(+t.dataset.rm,1); saveCart(); renderCart(); refreshCheckout(); return }
 });
 document.addEventListener('change', e => { if(e.target.id==='sort'){ shopSort=e.target.value; const y=window.scrollY; app.innerHTML='<div>'+viewShop(shopFilter)+'</div>'; window.scrollTo(0,y); $('#sort').focus() } });
+document.addEventListener('change', e => { if(e.target.name==='deliv'){ deliv=e.target.value; savePrefs(); const a=$('#addr'); if(a) a.hidden = deliv==='pickup'; renderCart(); refreshCheckout() } });
+document.addEventListener('toggle', e => { if(e.target.classList && e.target.classList.contains('adv')){ const s=pdpState[location.hash.slice(3)]; if(s) s.advOpen=e.target.open } }, true);
 document.addEventListener('input', e => { if(e.target.id==='q'){ searchQ=e.target.value; $('#results').innerHTML=searchResults() } });
 document.addEventListener('submit', e => {
   e.preventDefault();
+  if(e.target.classList.contains('codef')){ if(applyCode(e.target.code.value)) e.target.reset(); return }
+  if(e.target.id==='dropForm'){ const m=e.target.querySelector('input'); if(!m.checkValidity()||!m.value){ toast('Vul een geldig e-mailadres in'); return } m.value=''; toast('Je staat op de lijst voor '+DROP.name+'. Je krijgt 24 uur vroege toegang.'); return }
   if(e.target.id==='nlForm'){ const m=$('#nlMail'); if(!m.checkValidity()){ toast('Vul een geldig e-mailadres in'); return } m.value=''; toast('Ingeschreven. Je hoort van ons bij de volgende drop.'); return }
   if(e.target.id==='coForm'){
-    const f=e.target; const req=[...f.querySelectorAll('[required]')]; const bad=req.filter(i=>!i.value.trim()||!i.checkValidity());
+    const f=e.target; const req=[...f.querySelectorAll('[required]')].filter(i=>!i.closest('[hidden]')); const bad=req.filter(i=>!i.value.trim()||!i.checkValidity());
     req.forEach(i=>i.style.borderColor = bad.includes(i)?'var(--alert)':'');
     $('#coErr').hidden = !bad.length; if(bad.length){ bad[0].focus(); return }
-    lastOrder = {nr:'TBF-'+String(Math.floor(1000+Math.random()*9000)), name:$('#c-fn').value.trim(), mail:$('#c-mail').value.trim(), pay:f.pay.value, total:cartTotals().total};
+    lastOrder = {nr:'TBF-'+String(Math.floor(1000+Math.random()*9000)), name:$('#c-fn').value.trim(), mail:$('#c-mail').value.trim(), pay:f.pay.value, deliv, total:cartTotals().total};
     cart=[]; saveCart(); renderCart(); location.hash='bedankt';
   }
 });
@@ -711,6 +871,40 @@ $('#menuBtn').onclick = () => { const n=$('#mobileNav'); n.hidden=!n.hidden; $('
 $('#mobileNav').addEventListener('click', e => { if(e.target.closest('a')){ $('#mobileNav').hidden=true; $('#menuBtn').setAttribute('aria-expanded','false'); $('#menuBtn').setAttribute('aria-label','Menu openen') } });
 document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeCart(); closeModal(); $('#mobileNav').hidden=true; $('#menuBtn').setAttribute('aria-expanded','false') } });
 window.addEventListener('storage', e => { if(e.key==='tbf-cart'){ try{ cart=JSON.parse(e.newValue||'[]').filter(l=>l&&byId(l.id)) }catch(_){ cart=[] } renderCart() } });
+
+/* ===== aftelklok ===== */
+function tickDrop(){
+  const el=$('#cd-d'); if(!el) return;
+  let ms = new Date(DROP.date) - new Date();
+  if(ms<=0){ $('#dropLabel').textContent='Nu live'; ['d','h','m','s'].forEach(k=>$('#cd-'+k).textContent='00'); return }
+  const d=Math.floor(ms/864e5); ms-=d*864e5; const h=Math.floor(ms/36e5); ms-=h*36e5; const m=Math.floor(ms/6e4); const s=Math.floor((ms-m*6e4)/1e3);
+  [['d',d],['h',h],['m',m],['s',s]].forEach(([k,v])=>$('#cd-'+k).textContent=String(v).padStart(2,'0'));
+}
+setInterval(tickDrop,1000);
+
+/* ===== easter egg: de batterij loopt leeg terwijl je rondkijkt ===== */
+let batt = 100, eggShown = false;
+try { eggShown = sessionStorage.getItem('tbf-egg')==='1' } catch(e) {}
+function drawBatt(){
+  const b=$('#battBtn'); $('#battLvl').style.width=batt+'%';
+  if(eggShown && promo){ b.className='batt full'; $('#battTxt').textContent='FOCUSED'; $('#battLvl').style.width='100%'; b.setAttribute('aria-label','Batterij opgeladen, code FOCUSED actief'); return }
+  $('#battTxt').textContent=batt+'%'; b.classList.toggle('low', batt<=15); b.setAttribute('aria-label','Batterij '+batt+' procent');
+}
+function openEgg(){ const g=$('#egg'); g.inert=false; g.classList.add('on'); eggShown=true; try{ sessionStorage.setItem('tbf-egg','1') }catch(e){} g.querySelector('[data-egg-apply]').focus() }
+function closeEgg(){ const g=$('#egg'); g.classList.remove('on'); g.inert=true; drawBatt() }
+function battClick(){
+  if($('#egg').classList.contains('on')){ closeEgg(); return }
+  if(eggShown){ openEgg(); return }
+  toast(batt>60 ? 'Nog vol energie. Blijf even rondkijken.' : batt>30 ? 'Het wordt zwaar. Blijf gefocust.' : 'Bijna leeg. Hou vol...');
+}
+if(eggShown){ batt=8 }
+drawBatt();
+setInterval(()=>{
+  if(document.hidden || eggShown) return;
+  batt = Math.max(8, batt-2);
+  drawBatt();
+  if(batt===8) openEgg();
+}, 1000);
 
 renderCart(); route();
 </script>
