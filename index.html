@@ -14,7 +14,7 @@
 /* Layout: wide gallery grid on a warm stone ground, ink black for action, big compressed-italic-free Archivo caps for display. Single light world by choice. */
 :root{
   --bg:#F2F1ED; --paper:#FFFFFF; --stone:#E4E2DC; --photo:#E9E7E2; --line:#D6D3CC;
-  --ink:#121211; --muted:#5C5B55; --invert:#F2F1ED; --alert:#9A2B17; --ok:#2E5B37;
+  --ink:#121211; --muted:#5C5B55; --invert:#F2F1ED; --alert:#9A2B17; --ok:#2E5B37; --wa:#1A7F4B;
   --display:"Archivo", "Arial Narrow", Arial, sans-serif;
   --body:"Geist", "Helvetica Neue", Arial, sans-serif;
   --mono:"Geist Mono", ui-monospace, Menlo, monospace;
@@ -311,6 +311,10 @@ input[type=number]{height:44px;padding:0 12px;border:1px solid var(--line);backg
 .egg .row{display:flex;flex-wrap:wrap;gap:8px}
 .egg .smallbtn{border-color:var(--invert);color:var(--invert)}
 .egg .smallbtn.dark{background:var(--invert);color:var(--ink)}
+.wa-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn.wa{background:var(--wa);border-color:var(--wa);color:#fff}
+.btn.wa:hover{background:transparent;color:var(--wa)}
+.wa-msg{margin:0;padding:0 14px 16px;white-space:pre-wrap;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--ink)}
 .view{animation:fade .35s ease}
 @keyframes fade{from{opacity:.4;transform:translateY(6px)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -431,6 +435,8 @@ const STOCK = {'essential-hoodie':{M:3},'essential-jogger':{XS:0,L:2},'track-jac
 const PROMO = {code:'FOCUSED', pct:10};
 const DROP = {name:'Drop 02', date:'2026-11-21T20:00:00+01:00'};
 const PICKUP = 'Sint-Niklaas';
+/* WhatsApp-nummer van de eigenaar, internationaal zonder + of spaties, bv. 32470123456. Leeg = klant kiest zelf het contact. */
+const WHATSAPP = '';
 /* Waar we zelf leveren: postcodes in het Waasland. Pas aan als de zone groter of kleiner wordt. */
 const ZONE = {'9100':'Sint-Niklaas, Nieuwkerken','9111':'Belsele','9112':'Sinaai','9120':'Beveren, Melsele, Vrasene, Haasdonk','9130':'Kieldrecht, Verrebroek','9140':'Temse, Elversele, Steendorp, Tielrode','9150':'Kruibeke, Bazel, Rupelmonde','9160':'Lokeren, Eksaarde, Daknam','9170':'Sint-Gillis-Waas, Meerdonk, De Klinge','9180':'Moerbeke','9190':'Stekene, Kemzeke','9250':'Waasmunster'};
 const SLOTS = ['Weekdag, tussen 17u en 20u','Zaterdag, voormiddag','Zaterdag, namiddag','Maakt niet uit, bel me'];
@@ -755,8 +761,8 @@ function viewCheckout(){
           </div>
         </fieldset>
         <p class="err" id="coErr" hidden role="alert">Vul de verplichte velden in.</p>
-        <button class="btn full" type="submit">Bestelling plaatsen · cash <span class="price" id="coTotal">${eur(t.total)}</span></button>
-        <p class="note" style="margin:0">Je betaalt nu nog niets. Dit is een prototype, er wordt geen bestelling verstuurd.</p>
+        <button class="btn full" type="submit">Verder naar WhatsApp · cash <span class="price" id="coTotal">${eur(t.total)}</span></button>
+        <p class="note" style="margin:0">Je betaalt nu nog niets. In de volgende stap stuur je je bestelling naar ons via WhatsApp.</p>
       </form>
       <aside>
         <h2 class="display" style="font-size:24px;margin-bottom:6px">Je bestelling</h2>
@@ -769,17 +775,46 @@ function viewCheckout(){
 }
 
 let lastOrder = null;
+try { lastOrder = JSON.parse(sessionStorage.getItem('tbf-order')||'null') } catch(e) { lastOrder = null }
+const saveOrder = () => { try { sessionStorage.setItem('tbf-order', JSON.stringify(lastOrder)) } catch(e) {} };
+function waText(o){
+  const L = [];
+  L.push('*Nieuwe bestelling '+o.nr+'*', '');
+  o.items.forEach(i => L.push('• '+i.qty+'x '+i.name+', '+i.color+', maat '+i.size+'  '+eur(i.price*i.qty)));
+  L.push('');
+  if(o.disc) L.push('Korting '+PROMO.code+': −'+eur(o.disc));
+  L.push(o.deliv==='pickup' ? 'Ophalen in '+PICKUP+': gratis' : 'Levering: '+(o.ship?eur(o.ship):'gratis'));
+  L.push('*Totaal cash: '+eur(o.total)+'*', '');
+  L.push('*'+(o.deliv==='pickup'?'Ophalen':'Leveren')+'*');
+  if(o.deliv==='home'){ L.push(o.street, o.pc+' '+o.city); L.push('Moment: '+o.slot) } else L.push('Zelf ophalen in '+PICKUP);
+  L.push('', '*Klant*', o.name+' '+o.last, o.phone, o.mail);
+  return L.join('\n');
+}
+function waLink(o){ return 'https://wa.me/'+WHATSAPP.replace(/\D/g,'')+'?text='+encodeURIComponent(waText(o)) }
 function viewThanks(){
-  if(!lastOrder){ history.replaceState(null,'','#home'); return viewHome() }
-  return `<section class="done"><div class="wrap">
-    <p class="label">Bestelling ${lastOrder.nr}</p>
-    <h1 class="display">Bedankt, ${esc(lastOrder.name)}.</h1>
-    <p style="font-size:17px;color:var(--muted);max-width:52ch">We hebben je bestelling van <b class="price" style="color:var(--ink)">${eur(lastOrder.total)}</b> ontvangen.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:28px;max-width:640px">
-      <div><p class="label" style="margin:0 0 4px">${lastOrder.deliv==='pickup'?'Ophalen':'Levering'}</p><p style="margin:0">${lastOrder.deliv==='pickup'?'Zelf ophalen in '+PICKUP:'Wij brengen het naar '+esc(lastOrder.place)}${lastOrder.slot?'<br><span style="color:var(--muted)">'+esc(lastOrder.slot)+'</span>':''}</p></div>
-      <div><p class="label" style="margin:0 0 4px">Betalen</p><p style="margin:0"><b class="price">${eur(lastOrder.total)}</b> cash bij ${lastOrder.deliv==='pickup'?'het ophalen':'de levering'}</p></div>
-      <div><p class="label" style="margin:0 0 4px">Volgende stap</p><p style="margin:0">We contacteren je op ${esc(lastOrder.phone)} om een moment af te spreken.</p></div>
+  const o = lastOrder;
+  if(!o){ history.replaceState(null,'','#home'); return viewHome() }
+  const facts = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:28px;max-width:640px">
+      <div><p class="label" style="margin:0 0 4px">${o.deliv==='pickup'?'Ophalen':'Levering'}</p><p style="margin:0">${o.deliv==='pickup'?'Zelf ophalen in '+PICKUP:'Wij brengen het naar '+esc(o.place)}${o.slot?'<br><span style="color:var(--muted)">'+esc(o.slot)+'</span>':''}</p></div>
+      <div><p class="label" style="margin:0 0 4px">Betalen</p><p style="margin:0"><b class="price">${eur(o.total)}</b> cash bij ${o.deliv==='pickup'?'het ophalen':'de levering'}</p></div>
+      <div><p class="label" style="margin:0 0 4px">Volgende stap</p><p style="margin:0">We contacteren je op ${esc(o.phone)} om een moment af te spreken.</p></div>
+    </div>`;
+  if(!o.sent) return `<section class="done"><div class="wrap">
+    <p class="label">Bestelling ${o.nr} · nog één stap</p>
+    <h1 class="display">Stuur je bestelling via WhatsApp.</h1>
+    <p style="font-size:17px;color:var(--muted);max-width:52ch">We hebben alles klaargezet in een bericht. Tik op de knop, WhatsApp opent en je hoeft enkel nog op verzenden te drukken. Pas dan komt je bestelling bij ons binnen.</p>
+    <div class="wa-row">
+      <a class="btn wa" href="${waLink(o)}" target="_blank" rel="noopener" data-wa-sent><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.4 7.5L3.5 20l1.1-4A8.5 8.5 0 1 1 20 11.5Z"/><path d="M9 8.6c0 3 2.4 6 5.6 6.4l1-1.2-1.6-.9-.8.7c-1-.4-2-1.4-2.4-2.4l.7-.8-.9-1.6Z" fill="currentColor" stroke="none"/></svg>Verstuur via WhatsApp</a>
+      <button class="btn ghost" type="button" data-wa-copy>Kopieer bericht</button>
     </div>
+    <details class="adv" style="max-width:640px;margin-top:20px"><summary>Bekijk het bericht</summary><pre class="wa-msg">${esc(waText(o))}</pre></details>
+    ${facts}
+  </div></section>`;
+  return `<section class="done"><div class="wrap">
+    <p class="label">Bestelling ${o.nr}</p>
+    <h1 class="display">Bedankt, ${esc(o.name)}.</h1>
+    <p style="font-size:17px;color:var(--muted);max-width:52ch">Je bestelling van <b class="price" style="color:var(--ink)">${eur(o.total)}</b> is naar ons onderweg via WhatsApp. Niet verstuurd geraakt? <a class="link" style="text-transform:none;letter-spacing:0" href="${waLink(o)}" target="_blank" rel="noopener">Open het bericht opnieuw</a>.</p>
+    ${facts}
     <p style="margin-top:32px"><a class="btn" href="#shop">Verder shoppen</a></p>
   </div></section>`;
 }
@@ -848,6 +883,8 @@ window.addEventListener('hashchange', route);
 document.addEventListener('click', e => {
   const t = e.target.closest('button,a'); if(!t) return;
   if(t.matches('[data-close-cart]')) closeCart();
+  if(t.matches('[data-wa-sent]') && lastOrder && !lastOrder.sent){ lastOrder.sent=true; saveOrder(); cart=[]; saveCart(); renderCart(); setTimeout(()=>{ if(location.hash==='#bedankt') route() }, 400); return }
+  if(t.matches('[data-wa-copy]')){ const txt=waText(lastOrder); (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('Bericht gekopieerd. Plak het in WhatsApp.'),()=>{ const d=document.querySelector('.wa-msg'); d.closest('details').open=true; const r=document.createRange(); r.selectNodeContents(d); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); toast('Selecteer en kopieer het bericht hieronder') }); return }
   if(t.matches('[data-size-guide]')){ e.preventDefault(); openModal(); return }
   if(t.matches('[data-close-modal]')){ closeModal(); return }
   if(t.dataset.quick){ if(addToCart(t.dataset.quick, t.dataset.size)) toast(byId(t.dataset.quick).name+' maat '+t.dataset.size+' toegevoegd'); return }
@@ -880,8 +917,14 @@ document.addEventListener('submit', e => {
     req.forEach(i=>i.style.borderColor = bad.includes(i)?'var(--alert)':'');
     $('#coErr').textContent = zoneBad && bad.length===1 ? 'Postcode '+pc.value.trim()+' valt buiten ons leveringsgebied. Kies zelf ophalen in '+PICKUP+', of stuur ons een bericht op Instagram.' : 'Vul de verplichte velden in.';
     $('#coErr').hidden = !bad.length; if(bad.length){ bad[0].focus(); return }
-    lastOrder = {nr:'TBF-'+String(Math.floor(1000+Math.random()*9000)), name:$('#c-fn').value.trim(), mail:$('#c-mail').value.trim(), pay:'cash', deliv, phone:$('#c-ph').value.trim(), slot:deliv==='home'?$('#c-slot').value:'', place:deliv==='home'?($('#c-st').value.trim()+', '+$('#c-ci').value.trim()):PICKUP, total:cartTotals().total};
-    cart=[]; saveCart(); renderCart(); location.hash='bedankt';
+    const T = cartTotals(), v = id => $(id).value.trim();
+    lastOrder = {nr:'TBF-'+String(Math.floor(1000+Math.random()*9000)), sent:false, name:v('#c-fn'), last:v('#c-ln'), mail:v('#c-mail'), pay:'cash', deliv, phone:v('#c-ph'),
+      street:deliv==='home'?v('#c-st'):'', pc:deliv==='home'?v('#c-pc'):'', city:deliv==='home'?v('#c-ci'):'', slot:deliv==='home'?$('#c-slot').value:'',
+      place:deliv==='home'?(v('#c-st')+', '+v('#c-pc')+' '+v('#c-ci')):PICKUP,
+      items:cart.map(l=>{const p=byId(l.id);return {name:p.name,color:COLORS[p.color].name,size:l.size,qty:l.qty,price:p.price}}),
+      disc:T.disc, ship:T.ship, total:T.total};
+    saveOrder();
+    location.hash='bedankt';
   }
 });
 $('#cartBtn').onclick = openCart;
@@ -902,6 +945,8 @@ function tickDrop(){
   [['d',d],['h',h],['m',m],['s',s]].forEach(([k,v])=>$('#cd-'+k).textContent=String(v).padStart(2,'0'));
 }
 setInterval(tickDrop,1000);
+const waBack = () => { if(!document.hidden && location.hash==='#bedankt' && lastOrder && lastOrder.sent && document.querySelector('[data-wa-sent]')) route() };
+document.addEventListener('visibilitychange', waBack); window.addEventListener('focus', waBack);
 
 /* ===== easter egg: de batterij loopt leeg terwijl je rondkijkt ===== */
 let batt = 100, eggShown = false;
